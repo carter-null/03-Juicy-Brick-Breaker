@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Paddle/Paddle.gd" type="Script" id=1]
 [ext_resource path="res://Ball/Ball_Container.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Camera/WorldEnvironment.gd" type="Script" id=11]
 [ext_resource path="res://Paddle/Face.gd" type="Script" id=12]
 [ext_resource path="res://Assets/bubble.png" type="Texture" id=13]
+[ext_resource path="res://Assets/outline.png" type="Texture" id=14]
 [ext_resource path="res://Assets/mouth.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Datalegreya-Thin.otf" type="DynamicFontData" id=16]
 [ext_resource path="res://Audio/Music.gd" type="Script" id=17]
@@ -131,10 +132,16 @@ script = ExtResource( 5 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 polygon = PoolVector2Array( 0, 0, 0, 768, 1024, 768, 1024, 0, 64, 0, 64, -64, 1088, -64, 1088, 832, -64, 832, -64, -64, 64, -64, 64, 0 )
 
+[node name="Sprite" type="Sprite" parent="Walls/CollisionPolygon2D"]
+position = Vector2( 498.145, 370.658 )
+scale = Vector2( 1.53908, 1.46204 )
+texture = ExtResource( 14 )
+
 [node name="Particles2D" type="Particles2D" parent="Walls"]
 emitting = false
 lifetime = 0.4
 one_shot = true
+explosiveness = 1.0
 process_material = SubResource( 7 )
 texture = ExtResource( 8 )
 
