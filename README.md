@@ -1,6 +1,20 @@
-# Godot-Project-Template
+# Exercise-03c-Music-and-Sound
+Exercise for MSCH-C220, 1 October 2020
 
-This is an empty Godot project that can be used as a starting place for Godot repositories. After creating and cloning the repository, download this as a zip file. Unzip it and copy the files into the repository folder. You should then be able to import the project.godot file (in the repository folder) as a project in Godot. Make sure you change the project name in the Project Settings.
+The third part in a series exploring the "Juice it or Lose it" GDC 2012 presentation in Godot.
 
 ## Implementation
-Created in Godot 3.2.2
+Built using Godot 3.2.2
+Typeface: [Datalegreya](https://fontlibrary.org/en/font/datalegreya) by Figs Lab
+[Smoke particles](https://kenney.nl/assets/smoke-particles) provided by kenney.nl
+All other sprites created by Jason Francis in Photoshop
+Music and sound effects created by the author
+
+## References
+[Juice it or Lose it](https://www.youtube.com/watch?v=Fy0aCDmgnxg)
+
+## Future Development
+None
+
+## Created by 
+Carter Null

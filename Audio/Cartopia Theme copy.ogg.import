@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Cartopia Theme copy.ogg-7b35fda04e8b15c5a4b44d4aa701279d.oggstr"
+
+[deps]
+
+source_file="res://Audio/Cartopia Theme copy.ogg"
+dest_files=[ "res://.import/Cartopia Theme copy.ogg-7b35fda04e8b15c5a4b44d4aa701279d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

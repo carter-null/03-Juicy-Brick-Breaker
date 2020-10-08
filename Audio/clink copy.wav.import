@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/clink copy.wav-6859dd466e8d36a562cc783f9eff292a.sample"
+
+[deps]
+
+source_file="res://Audio/clink copy.wav"
+dest_files=[ "res://.import/clink copy.wav-6859dd466e8d36a562cc783f9eff292a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
