@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-export var max_speed = 425.0
-export var min_speed = 100.0
+export var max_speed = 450.0
+export var min_speed = 90.0
 onready var HUD = get_node("/root/Game/HUD")
 onready var camera = get_node("/root/Game/Camera")
 
