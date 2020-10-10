@@ -23,7 +23,7 @@ func set_strength(s):
 	points = strength*10 + 100
 
 func damage(_d):
-	set_strength(strength - 3)
+	set_strength(strength - 4)
 	Global.update_score(points)
 
 
