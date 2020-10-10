@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Paddle/Paddle Container.gd" type="Script" id=1]
 [ext_resource path="res://Ball/Ball Container.gd" type="Script" id=2]
@@ -13,7 +13,9 @@
 [ext_resource path="res://Assets/backgroundframe2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/soliddarkred.png" type="Texture" id=12]
 [ext_resource path="res://Assets/backgroundframe3.png" type="Texture" id=13]
+[ext_resource path="res://Assets/evilballanimationoneball2.png" type="Texture" id=14]
 [ext_resource path="res://Assets/animationforpaddle3.png" type="Texture" id=15]
+[ext_resource path="res://Assets/evilballanimationoneball.png" type="Texture" id=16]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -57,11 +59,29 @@ region = Rect2( 0, 0, 1020, 1020 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ ExtResource( 12 ), SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 12 ), SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 100, 0 )
+initial_velocity = 143.4
+initial_velocity_random = 1.0
+angular_velocity = 40.32
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 1.0
+radial_accel = 1.0
+radial_accel_random = 1.0
+tangential_accel = 10.08
+tangential_accel_random = 1.0
+angle = 1.0
+angle_random = 1.0
 
 [node name="Game" type="Node2D"]
 
@@ -74,7 +94,7 @@ script = ExtResource( 9 )
 position = Vector2( 540.71, 548.318 )
 scale = Vector2( 1.34611, 1.83878 )
 frames = SubResource( 9 )
-frame = 3
+frame = 2
 speed_scale = 0.25
 playing = true
 
@@ -82,6 +102,55 @@ playing = true
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 17
+
+[node name="Particles2D" type="Particles2D" parent="Walls"]
+position = Vector2( 538.664, -43.8307 )
+amount = 2
+lifetime = 5.0
+process_material = SubResource( 10 )
+texture = ExtResource( 16 )
+
+[node name="Particles2D2" type="Particles2D" parent="Walls"]
+position = Vector2( 192.122, -35.9716 )
+amount = 2
+lifetime = 5.0
+process_material = SubResource( 10 )
+texture = ExtResource( 16 )
+
+[node name="Particles2D4" type="Particles2D" parent="Walls"]
+position = Vector2( 192.122, -35.9716 )
+amount = 2
+lifetime = 5.0
+process_material = SubResource( 10 )
+texture = ExtResource( 16 )
+
+[node name="Particles2D5" type="Particles2D" parent="Walls"]
+position = Vector2( 190.575, -35.4041 )
+amount = 2
+lifetime = 5.0
+process_material = SubResource( 10 )
+texture = ExtResource( 14 )
+
+[node name="Particles2D6" type="Particles2D" parent="Walls"]
+position = Vector2( 536.588, -50.3704 )
+amount = 2
+lifetime = 5.0
+process_material = SubResource( 10 )
+texture = ExtResource( 14 )
+
+[node name="Particles2D7" type="Particles2D" parent="Walls"]
+position = Vector2( 875.537, -43.826 )
+amount = 2
+lifetime = 5.0
+process_material = SubResource( 10 )
+texture = ExtResource( 14 )
+
+[node name="Particles2D3" type="Particles2D" parent="Walls"]
+position = Vector2( 881.508, -44.3447 )
+amount = 2
+lifetime = 5.0
+process_material = SubResource( 10 )
+texture = ExtResource( 16 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 polygon = PoolVector2Array( -0.00311756, 0.0118186, -0.163925, 646.756, -75.7551, 645.973, -70.7115, -101.147, 1140.65, -94.6624, 1141.94, 710.749, 1024.03, 711.982, 1024.01, 0.154423 )
