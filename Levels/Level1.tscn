@@ -91,10 +91,10 @@ autoplay = true
 script = ExtResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 540.71, 548.318 )
+position = Vector2( 539.094, 548.318 )
 scale = Vector2( 1.34611, 1.83878 )
 frames = SubResource( 9 )
-frame = 2
+frame = 4
 speed_scale = 0.25
 playing = true
 

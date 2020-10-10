@@ -78,7 +78,6 @@ max_speed = 400.0
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -5.22353, -6.20612 )
 frames = SubResource( 10 )
-frame = 1
 speed_scale = 0.7
 playing = true
 
