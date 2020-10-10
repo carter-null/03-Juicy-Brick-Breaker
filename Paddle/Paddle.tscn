@@ -69,6 +69,7 @@ position = Vector2( -19.595, 50 )
 scale = Vector2( 0.6, 0.6 )
 frames = SubResource( 9 )
 animation = "hit"
+frame = 1
 speed_scale = 0.3
 playing = true
 

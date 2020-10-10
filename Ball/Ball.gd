@@ -75,15 +75,4 @@ func _on_AnimatedSprite_animation_finished():
 func _on_AudioStreamPlayer2D_finished():
 	if collided == true:
 		load("/Audio/ballsound.wav")
-	else:
-		pass
-
-func play_sound():
-	if collided:
-		load("res://Audio/ballsound.wav")
-
-func _on_AudioStreamPlayer_finished():
-	if collided:
-		play_sound()
-		
 

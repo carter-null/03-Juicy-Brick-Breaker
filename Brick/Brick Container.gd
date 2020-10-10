@@ -41,7 +41,7 @@ func _ready():
 func _physics_process(_delta):
 	if get_child_count() == 0:
 		Global.update_level(1)
-		if Global.level == 2:
+		if Global.level == 3:
 			get_tree().change_scene("res://HUD/GameOver.tscn")
 		else:
 			start()
@@ -73,3 +73,6 @@ func start():
 		
 func _on_AudioStreamPlayer2D_finished():
 	pass # Replace with function body.
+
+
+
