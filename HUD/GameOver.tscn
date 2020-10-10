@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://HUD/GameOver.gd" type="Script" id=1]
+[ext_resource path="res://Assets/soliddarkred.png" type="Texture" id=2]
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 455.05, 251.993 )
+scale = Vector2( 1.89226, 1.4941 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 4.0
+margin_top = -75.0
+margin_right = 1028.0
+margin_bottom = 530.0
+text = "Your mortality gage has depleted. Your final score was: "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play_Again" type="Button" parent="."]
+margin_left = 386.0
+margin_top = 349.0
+margin_right = 640.0
+margin_bottom = 447.0
+text = "Wage War Again?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="."]
+margin_left = 386.0
+margin_top = 478.336
+margin_right = 640.0
+margin_bottom = 576.336
+text = "Accept Defeat."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Play_Again" to="." method="_on_Play_Again_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

@@ -1,79 +1,89 @@
 extends RigidBody2D
 
-export var max_speed = 450.0
-export var min_speed = 90.0
-onready var HUD = get_node("/root/Game/HUD")
-onready var camera = get_node("/root/Game/Camera")
+onready var VP = get_viewport_rect().size
+var speed = 400
+export var min_speed = 100.0
+export var max_speed = 1000.0
+var collided = false
+export var speedup = 1.05
 
-onready var effect_paddle = get_node("/root/Game/Effect_Paddle")
-onready var effect_wall = get_node("/root/Game/Effect_Wall")
-onready var effect_brick = get_node("/root/Game/Effect_Brick")
 
-var wall_trauma = 0.0005
-var paddle_trauma = 0.008
-var brick_trauma = 0.0105
-
+var released = false
 
 func _ready():
-	HUD.connect("changed",self,"_on_HUD_changed")
 	contact_monitor = true
 	set_max_contacts_reported(4)
-	update_color()
+	if not released:
+		mode = RigidBody2D.MODE_KINEMATIC
 
 
-func update_color():
-	if HUD.color_ball:
-		$Color.color = Color8(500,500,500)
-	else:
-		$Color.color = Color(1,1,1,1)
-	if HUD.particle_ball:
-		$Particles2D.emitting = true
-	else:
-		$Particles2D.emitting = false
+func release_ball():
+	released = true
+	mode = RigidBody2D.MODE_RIGID
+	var impulse = Vector2.RIGHT*speed
+	impulse = impulse.rotated(randf()*-PI)
+	apply_central_impulse(impulse)
 
 
-
-
-func screen_shake(amount):
-	if HUD.screen_shake > 0:
-		camera.add_trauma(amount*HUD.screen_shake)
-
-func play_sound(sound):
-	if HUD.audio_effects:
-		sound.play()
-
-func _on_HUD_changed():
-	update_color()	
 
 func _physics_process(_delta):
-	if HUD.ball_trail:
-		var c = $Color.duplicate()
-		c.rect_global_position = global_position
-		c.color = c.color.darkened(0.4)
-		get_node("/root/Game/Trail_Container").add_child(c)
-
-
-	var bodies = get_colliding_bodies()
-	for body in bodies:
-		if body.name == "Walls":
-			screen_shake(wall_trauma)
-			play_sound(effect_wall)
-		if body.name == "Paddle":
-			screen_shake(paddle_trauma)
-			play_sound(effect_paddle)
-		if body.is_in_group("Brick"):
-			screen_shake(brick_trauma)
-			play_sound(effect_brick)
-			
-		if body.has_method("emit_particle"):
-			body.emit_particle(global_position)
-		if body.is_in_group("Brick"):
-			body.die()
+	var paddle = get_node("/root/Game/Paddle Container/Paddle") #delete if needed
+	if not released:
+		position = paddle.position
+		position.y -= 5
+	else:
+		if position.y > VP.y + 30:
+			die()
+		
+		var bodies = get_colliding_bodies()
+		for body in bodies:
+			collided = true
+			if body.get_parent().name == "Paddle Container":
+				$AnimatedSprite.play("hit")
+				body.find_node("AnimatedSprite").play("hit")
+			if body.is_in_group("brick"):
+				body.damage(1)
+	if Input.is_action_just_pressed("release") and not released:
+		release_ball()
+		
 
 func _integrate_forces(state):
+	if collided:
+		state.linear_velocity *= speedup
+		collided = false
 	if abs(state.linear_velocity.x) < min_speed:
 		state.linear_velocity.x = sign(state.linear_velocity.x) * min_speed
+	if abs(state.linear_velocity.x) > max_speed:
+		state.linear_velocity.x = sign(state.linear_velocity.x) * max_speed
 	if abs(state.linear_velocity.y) < min_speed:
 		state.linear_velocity.y = sign(state.linear_velocity.y) * min_speed
-	if state.linear_velocity.length() > max_speed:
-		state.linear_velocity = state.linear_velocity.normalized() * max_speed
+	if abs(state.linear_velocity.y) > max_speed:
+		state.linear_velocity.y = sign(state.linear_velocity.y) * max_speed
+	if collided:
+		emit_signal("ballsound", self)
+
+func die(): 
+	Global.update_lives(-1)
+	queue_free()
+
+
+func _on_AnimatedSprite_animation_finished():
+	$AnimatedSprite.play("default")
+
+
+
+func _on_AudioStreamPlayer2D_finished():
+	if collided == true:
+		load("/Audio/ballsound.wav")
+	else:
+		pass
+
+func play_sound():
+	if collided:
+		load("res://Audio/ballsound.wav")
+
+func _on_AudioStreamPlayer_finished():
+	if collided:
+		play_sound()
+		
+
